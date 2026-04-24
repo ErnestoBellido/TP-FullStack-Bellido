@@ -1,0 +1,57 @@
+[
+  {
+    "name": "RTX 3060",
+    "price": 400,
+    "categoryId": 1,
+    "specs": {
+      "brand": "NVIDIA",
+      "model": "RTX 3060",
+      "details": "12GB GDDR6"
+    },
+    "stock": 10
+  },
+  {
+    "name": "Procesador Intel i5 12400F",
+    "price": 220,
+    "categoryId": 2,
+    "specs": {
+      "brand": "Intel",
+      "model": "i5 12400F",
+      "details": "6 cores, 12 threads"
+    },
+    "stock": 15
+  },
+  {
+    "name": "Memoria RAM 16GB DDR4",
+    "price": 80,
+    "categoryId": 3,
+    "specs": {
+      "brand": "Corsair",
+      "model": "Vengeance LPX",
+      "details": "16GB (2x8GB) 3200MHz"
+    },
+    "stock": 25
+  },
+  {
+    "name": "SSD 1TB NVMe",
+    "price": 120,
+    "categoryId": 4,
+    "specs": {
+      "brand": "Samsung",
+      "model": "970 EVO Plus",
+      "details": "1TB NVMe M.2"
+    },
+    "stock": 20
+  },
+  {
+    "name": "Fuente 650W 80 Plus Bronze",
+    "price": 90,
+    "categoryId": 5,
+    "specs": {
+      "brand": "EVGA",
+      "model": "650 BQ",
+      "details": "Semi modular"
+    },
+    "stock": 12
+  }
+]

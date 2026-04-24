@@ -1,0 +1,15 @@
+El trabajo práctico de la materia es de caracter integrador y se dividirá en dos módulos (frontend y backend).
+
+Constará de dos entregas de lo desarrollado la primera se corresponderá con el módulo de backend.
+
+1ra entrega:
+
+Endpoints correspondiente a la API Rest desarrollada para la solución
+Documentación de los endpoints o bien en el repositorio de entrega o bien utilizando alguna herramienta como swagger.
+Código del desarrollo actualizado en el repositorio de backend
+Resumen de datos de prueba
+Video demostrativo de los endpoints funcionales utilizando alguna herramienta de prueba tal como postman.
+2da entrega:
+
+Código entregado en repositorio correspondiente al módulo de frontend
+Defensa oral del proyecto. (Fecha a designar según calendario académico)   
