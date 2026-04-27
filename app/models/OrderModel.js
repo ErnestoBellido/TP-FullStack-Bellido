@@ -23,6 +23,17 @@ const OrderSchema = new mongoose.Schema({
   },
   status: {
     type: String,
+    enum: ['pending', 'paid', 'cancelled'],
+    default: 'pending'
+  },
+  paymentMethod: {
+    type: String,
+    enum: ['cash', 'card', 'transfer'],
+    default: 'cash'
+  },
+  paymentStatus: {
+    type: String,
+    enum: ['pending', 'approved', 'rejected'],
     default: 'pending'
   },
   createdAt: {

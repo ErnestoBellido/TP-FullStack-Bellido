@@ -1,4 +1,120 @@
 const Cart = require('../models/CartModel');
+const Product = require('../models/ProductModel');
+
+async function calculateTotal(products) {
+  let total = 0;
+
+  for (const item of products) {
+    const product = await Product.findById(item.productId);
+    if (!product) {
+      throw new Error(`Producto no encontrado: ${item.productId}`);
+    }
+
+    total += product.price * item.quantity;
+  }
+
+  return total;
+}
+
+async function getOrCreateCart(userId) {
+  let cart = await Cart.findOne({ userId });
+
+  if (!cart) {
+    cart = new Cart({
+      userId,
+      products: [],
+      total: 0
+    });
+  }
+
+  return cart;
+}
+
+async function myCart(req, res) {
+  try {
+    const cart = await getOrCreateCart(req.user.id);
+    cart.total = await calculateTotal(cart.products);
+    await cart.save();
+
+    return res.status(200).send({ cart });
+  } catch (err) {
+    return res.status(500).send({ error: err.message });
+  }
+}
+
+async function addProduct(req, res) {
+  try {
+    const { productId, quantity = 1 } = req.body;
+    const parsedQuantity = Number(quantity);
+
+    if (!productId || !Number.isInteger(parsedQuantity) || parsedQuantity < 1) {
+      return res.status(400).send({ message: 'productId y quantity mayor a 0 son requeridos' });
+    }
+
+    const product = await Product.findById(productId);
+    if (!product) {
+      return res.status(404).send({ message: 'Producto no encontrado' });
+    }
+
+    const cart = await getOrCreateCart(req.user.id);
+    const existingProduct = cart.products.find(item => item.productId.toString() === productId);
+    const currentQuantity = existingProduct ? existingProduct.quantity : 0;
+
+    if (currentQuantity + parsedQuantity > product.stock) {
+      return res.status(400).send({ message: 'Stock insuficiente' });
+    }
+
+    if (existingProduct) {
+      existingProduct.quantity += parsedQuantity;
+    } else {
+      cart.products.push({
+        productId,
+        quantity: parsedQuantity
+      });
+    }
+
+    cart.total = await calculateTotal(cart.products);
+    await cart.save();
+
+    return res.status(200).send({ message: 'Producto agregado al carrito', cart });
+  } catch (err) {
+    return res.status(500).send({ error: err.message });
+  }
+}
+
+async function removeProduct(req, res) {
+  try {
+    const { productId, quantity = 1 } = req.body;
+    const parsedQuantity = Number(quantity);
+
+    if (!productId || !Number.isInteger(parsedQuantity) || parsedQuantity < 1) {
+      return res.status(400).send({ message: 'productId y quantity mayor a 0 son requeridos' });
+    }
+
+    const cart = await Cart.findOne({ userId: req.user.id });
+    if (!cart) {
+      return res.status(404).send({ message: 'Carrito no encontrado' });
+    }
+
+    const existingProduct = cart.products.find(item => item.productId.toString() === productId);
+    if (!existingProduct) {
+      return res.status(404).send({ message: 'Producto no encontrado en el carrito' });
+    }
+
+    existingProduct.quantity -= parsedQuantity;
+
+    if (existingProduct.quantity <= 0) {
+      cart.products = cart.products.filter(item => item.productId.toString() !== productId);
+    }
+
+    cart.total = await calculateTotal(cart.products);
+    await cart.save();
+
+    return res.status(200).send({ message: 'Producto quitado del carrito', cart });
+  } catch (err) {
+    return res.status(500).send({ error: err.message });
+  }
+}
 
 function listAll(req, res) {
   Cart.find({})
@@ -62,6 +178,9 @@ function deleted(req, res) {
 }
 
 module.exports = {
+  myCart,
+  addProduct,
+  removeProduct,
   listAll,
   create,
   find,

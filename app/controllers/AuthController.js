@@ -6,14 +6,24 @@ const AuthController = {
 
   async register(req, res) {
     try {
-      const { name, email, password } = req.body;
+      const { name, email, password, role, adminCode } = req.body;
 
       const existing = await User.findOne({ email });
       if (existing) {
         return res.status(400).json({ message: 'Ya existe' });
       }
 
-      const user = new User({ name, email, password });
+      let userRole = 'user';
+
+      if (role === 'admin') {
+        if (adminCode !== CONFIG.ADMIN_CODE) {
+          return res.status(403).json({ message: 'Codigo de admin invalido' });
+        }
+
+        userRole = 'admin';
+      }
+
+      const user = new User({ name, email, password, role: userRole });
       await user.save();
 
       res.status(201).json({ message: 'Usuario creado' });
