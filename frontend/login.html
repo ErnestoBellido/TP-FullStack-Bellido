@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iniciar sesion | BTECH</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--compact" aria-labelledby="loginTitle">
+      <div class="hero__content">
+        <p class="eyebrow">Cuenta</p>
+        <h1 id="loginTitle">Iniciar sesion</h1>
+      </div>
+
+      <div class="hero__panel" aria-label="Accesos">
+        <a class="account-button" href="index.html">Volver</a>
+        <a class="cart-button" href="carrito.html">Mi carrito</a>
+      </div>
+    </section>
+
+    <section class="auth-layout" aria-label="Acceso de usuario">
+      <form class="form-panel" id="loginForm">
+        <div>
+          <p class="section-kicker">Ya tengo cuenta</p>
+          <h2>Entrar</h2>
+        </div>
+
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+
+        <label>
+          Contrasena
+          <input type="password" name="password" autocomplete="current-password" required>
+        </label>
+
+        <button class="cart-button" type="submit">Iniciar sesion</button>
+      </form>
+
+      <form class="form-panel" id="registerForm">
+        <div>
+          <p class="section-kicker">Cuenta nueva</p>
+          <h2>Registrarme</h2>
+        </div>
+
+        <label>
+          Nombre
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+
+        <label>
+          Contrasena
+          <input type="password" name="password" autocomplete="new-password" required>
+        </label>
+
+        <label class="checkbox-row">
+          <input type="checkbox" name="isAdmin" id="isAdmin">
+          Crear cuenta de administrador
+        </label>
+
+        <label class="admin-code" id="adminCodeGroup">
+          Codigo admin
+          <input type="password" name="adminCode" autocomplete="off">
+        </label>
+
+        <button class="cart-button" type="submit">Crear cuenta</button>
+      </form>
+
+      <p class="status-message" id="authStatus" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>BTECH</strong>
+      <p>Tienda de informatica</p>
+    </div>
+  </footer>
+
+  <script src="js/auth.js"></script>
+</body>
+</html>

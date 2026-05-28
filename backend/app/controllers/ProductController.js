@@ -23,6 +23,7 @@ function create(req, res) {
 
 // FIND
 function find(req, res, next) {
+  req.body = req.body || {};
   let query = {};
   query[req.params.key] = req.params.value;
 
@@ -59,6 +60,29 @@ function update(req, res) {
     .catch(err => res.status(500).send({ err }));
 }
 
+async function updateStock(req, res) {
+  try {
+    const stock = Number(req.body.stock);
+
+    if (!Number.isInteger(stock) || stock < 0) {
+      return res.status(400).send({ message: 'El stock debe ser un numero entero mayor o igual a 0' });
+    }
+
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).send({ message: 'Producto no encontrado' });
+    }
+
+    product.stock = stock;
+    await product.save();
+
+    return res.status(200).send({ message: 'Stock actualizado', product });
+  } catch (err) {
+    return res.status(500).send({ error: err.message });
+  }
+}
+
 // DELETE
 function deleted(req, res) {
   if (req.body.error) return res.status(500).send({ error: req.body.error });
@@ -75,5 +99,6 @@ module.exports = {
   find,
   show,
   update,
+  updateStock,
   deleted
 };

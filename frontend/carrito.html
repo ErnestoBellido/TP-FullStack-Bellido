@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrito | BTECH</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--compact" aria-labelledby="cartTitle">
+      <div class="hero__content">
+        <p class="eyebrow">Compra</p>
+        <h1 id="cartTitle">Mi carrito</h1>
+      </div>
+
+      <div class="hero__panel" aria-label="Accesos">
+        <a class="account-button" href="index.html">Volver</a>
+        <button class="danger-button session-button" type="button" id="logoutButton">Cerrar sesion</button>
+      </div>
+    </section>
+
+    <section class="cart-layout" aria-label="Detalle del carrito">
+      <div class="cart-header">
+        <div>
+          <p class="section-kicker">Seleccionados</p>
+          <h2>Su carrito es:</h2>
+        </div>
+      </div>
+
+      <ul class="cart-list" id="lista_carrito"></ul>
+
+      <div class="cart-summary">
+        <div id="total"></div>
+        <div class="cart-actions">
+          <button class="account-button" type="button" onclick="mostrarPago()">Comprar</button>
+          <button class="cart-button" type="button" onclick="limpiarCarrito()">Vaciar carrito</button>
+        </div>
+      </div>
+
+      <form class="payment-panel" id="paymentForm">
+        <div>
+          <p class="section-kicker">Pago</p>
+          <h2>Metodo de pago</h2>
+        </div>
+
+        <div class="payment-options" role="radiogroup" aria-label="Metodo de pago">
+          <label>
+            <input type="radio" name="paymentMethod" value="cash" checked>
+            Efectivo
+          </label>
+          <label>
+            <input type="radio" name="paymentMethod" value="card">
+            Tarjeta
+          </label>
+          <label>
+            <input type="radio" name="paymentMethod" value="transfer">
+            Transferencia
+          </label>
+        </div>
+
+        <div class="cart-actions">
+          <button class="cart-button" type="submit" id="confirmPaymentButton">Confirmar compra</button>
+          <button class="account-button" type="button" id="cancelPaymentButton">Cancelar</button>
+        </div>
+
+        <p class="status-message" id="paymentStatus" role="status"></p>
+      </form>
+    </section>
+
+    <section class="cart-layout cart-layout--orders" aria-label="Ordenes del usuario" id="ordersSection">
+      <div class="cart-header">
+        <div>
+          <p class="section-kicker">Historial</p>
+          <h2>Mis ordenes</h2>
+        </div>
+      </div>
+
+      <ul class="cart-list" id="mis_ordenes"></ul>
+    </section>
+
+    <div class="success-toast" id="successToast" aria-live="polite">
+      <strong>Compra exitosa!</strong>
+      <span>Tu carrito ya se convirtio en una orden.</span>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>BTECH</strong>
+      <p>Tienda de informatica</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/carrito.js"></script>
+</body>
+</html>

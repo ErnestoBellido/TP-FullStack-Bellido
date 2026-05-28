@@ -53,7 +53,14 @@ const AuthController = {
         { expiresIn: CONFIG.JWT_EXPIRES }
       );
 
-      res.json({ token });
+      res.json({
+        token,
+        user: {
+          name: user.name,
+          email: user.email,
+          role: user.role
+        }
+      });
 
     } catch (err) {
       res.status(500).json({ error: err.message });

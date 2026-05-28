@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTECH</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero__content">
+        <p class="eyebrow">Tienda de informatica</p>
+        <h1 id="heroTitle">BTECH</h1>
+      </div>
+
+      <div class="hero__panel" aria-label="Accesos de usuario">
+        <a class="account-button" href="login.html" id="accountLink">Mi cuenta</a>
+        <a class="account-button admin-link" href="admin.html" id="adminLink">Admin tools</a>
+        <a class="cart-button" href="carrito.html" aria-label="Ver carrito">
+          <span>Mi carrito</span>
+          <span class="cart-button__count" id="cartCount">0</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="store-layout" aria-label="Catalogo de productos">
+      <aside class="filters" aria-label="Categorias">
+        <div>
+          <p class="section-kicker">Categorias</p>
+          <h2>Catalogo</h2>
+        </div>
+        <div class="categories" id="categories"></div>
+      </aside>
+
+      <section class="products-area" aria-label="Productos">
+        <div class="products-heading">
+          <div>
+            <p class="section-kicker">Disponibles</p>
+            <h2 id="productsTitle">Todos los productos</h2>
+          </div>
+          <p id="productsCount">0 productos</p>
+        </div>
+
+        <div class="products" id="products">
+          <p class="empty-message">Cargando productos...</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>BTECH</strong>
+      <p>Tienda de informatica</p>
+    </div>
+
+    <nav class="socials" aria-label="Redes sociales">
+      <a href="#">Instagram</a>
+      <a href="#">Facebook</a>
+      <a href="#">WhatsApp</a>
+    </nav>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

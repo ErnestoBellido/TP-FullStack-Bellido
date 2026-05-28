@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const OrderSchema = new mongoose.Schema({
+  orderNumber: {
+    type: Number,
+    required: false
+  },
   userId: {
     type: String,
     required: true
@@ -35,6 +39,10 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     enum: ['pending', 'approved', 'rejected'],
     default: 'pending'
+  },
+  deliveryDays: {
+    type: Number,
+    required: false
   },
   createdAt: {
     type: Date,

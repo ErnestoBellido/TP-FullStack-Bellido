@@ -134,6 +134,7 @@ function create(req, res) {
 }
 
 function find(req, res, next) {
+  req.body = req.body || {};
   let query = {};
   query[req.params.key] = req.params.value;
 

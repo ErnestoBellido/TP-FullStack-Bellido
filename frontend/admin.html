@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | BTECH</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main>
+    <section class="hero hero--compact" aria-labelledby="adminTitle">
+      <div class="hero__content">
+        <p class="eyebrow">Administracion</p>
+        <h1 id="adminTitle">Panel admin</h1>
+      </div>
+
+      <div class="hero__panel" aria-label="Accesos">
+        <a class="account-button" href="index.html">Tienda</a>
+        <button class="cart-button" type="button" id="logoutButton">Cerrar sesion</button>
+      </div>
+    </section>
+
+    <section class="admin-layout" aria-label="Carga de productos y categorias">
+      <form class="form-panel" id="categoryForm">
+        <div>
+          <p class="section-kicker">Categorias</p>
+          <h2>Agregar categoria</h2>
+        </div>
+
+        <label>
+          ID
+          <input type="number" name="id" min="1" required>
+        </label>
+
+        <label>
+          Nombre
+          <input type="text" name="name" required>
+        </label>
+
+        <label>
+          Descripcion
+          <textarea name="description" rows="4"></textarea>
+        </label>
+
+        <button class="cart-button" type="submit">Guardar categoria</button>
+      </form>
+
+      <section class="form-panel admin-list-panel" aria-labelledby="categoryListTitle">
+        <div>
+          <p class="section-kicker">Categorias</p>
+          <h2 id="categoryListTitle">Eliminar categoria</h2>
+        </div>
+
+        <ul class="admin-list" id="categoryList"></ul>
+      </section>
+
+      <form class="form-panel" id="productForm">
+        <div>
+          <p class="section-kicker">Productos</p>
+          <h2>Agregar producto</h2>
+        </div>
+
+        <label>
+          Nombre
+          <input type="text" name="name" required>
+        </label>
+
+        <label>
+          Precio
+          <input type="number" name="price" min="0" required>
+        </label>
+
+        <label>
+          Categoria
+          <select name="categoryId" id="categorySelect" required></select>
+        </label>
+
+        <label>
+          Marca
+          <input type="text" name="brand" required>
+        </label>
+
+        <label>
+          Modelo
+          <input type="text" name="model" required>
+        </label>
+
+        <label>
+          Detalle
+          <textarea name="details" rows="4"></textarea>
+        </label>
+
+        <label>
+          Stock
+          <input type="number" name="stock" min="0" required>
+        </label>
+
+        <button class="cart-button" type="submit">Guardar producto</button>
+      </form>
+
+      <section class="form-panel admin-list-panel" aria-labelledby="productListTitle">
+        <div>
+          <p class="section-kicker">Productos</p>
+          <h2 id="productListTitle">Eliminar producto</h2>
+        </div>
+
+        <ul class="admin-list" id="productList"></ul>
+      </section>
+
+      <form class="form-panel" id="userForm">
+        <div>
+          <p class="section-kicker">Usuarios</p>
+          <h2>Crear usuario</h2>
+        </div>
+
+        <label>
+          Nombre
+          <input type="text" name="name" required>
+        </label>
+
+        <label>
+          Email
+          <input type="email" name="email" required>
+        </label>
+
+        <label>
+          Contrasena
+          <input type="password" name="password" required>
+        </label>
+
+        <label>
+          Rol
+          <select name="role" required>
+            <option value="user">Usuario</option>
+            <option value="admin">Admin</option>
+          </select>
+        </label>
+
+        <button class="cart-button" type="submit">Guardar usuario</button>
+      </form>
+
+      <section class="form-panel admin-list-panel" aria-labelledby="userListTitle">
+        <div>
+          <p class="section-kicker">Usuarios</p>
+          <h2 id="userListTitle">Eliminar usuario</h2>
+        </div>
+
+        <ul class="admin-list" id="userList"></ul>
+      </section>
+
+      <section class="form-panel admin-list-panel admin-list-panel--wide" aria-labelledby="orderListTitle">
+        <div>
+          <p class="section-kicker">Ordenes</p>
+          <h2 id="orderListTitle">Eliminar orden</h2>
+        </div>
+
+        <ul class="admin-list" id="orderList"></ul>
+      </section>
+
+      <p class="status-message" id="adminStatus" role="status"></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <strong>BTECH</strong>
+      <p>Tienda de informatica</p>
+    </div>
+  </footer>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

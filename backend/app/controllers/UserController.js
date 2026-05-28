@@ -11,14 +11,23 @@ function listAll(req, res) {
 }
 
 function create(req, res) {
+  if (!['user', 'admin'].includes(req.body.role)) {
+    req.body.role = 'user';
+  }
+
   let user = new User(req.body);
 
   user.save()
-    .then(user => res.status(201).send({ user }))
+    .then(user => {
+      const createdUser = user.toObject();
+      delete createdUser.password;
+      res.status(201).send({ user: createdUser });
+    })
     .catch(err => res.status(500).send({ err }));
 }
 
 function find(req, res, next) {
+  req.body = req.body || {};
   let query = {};
   query[req.params.key] = req.params.value;
 

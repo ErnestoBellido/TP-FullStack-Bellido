@@ -15,13 +15,14 @@ Backend de una tienda de productos de informatica para armado de PCs.
 Primero instalar dependencias si hace falta:
 
 ```bash
+cd backend
 npm install
 ```
 
 Despues levantar el servidor:
 
 ```bash
-node server.js
+npm start
 ```
 
 Corre en:
