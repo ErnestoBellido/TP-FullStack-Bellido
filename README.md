@@ -509,7 +509,3 @@ Campos principales:
 - No se puede comprar mas cantidad que el stock disponible.
 - Al confirmar la compra se descuenta el stock del producto.
 - Los productos sin stock se muestran pero no se pueden agregar al carrito.
-
-## Notas
-
-Este proyecto esta pensado para uso academico/local. La conexion a MongoDB y secretos estan definidos en el archivo de configuracion del backend para simplificar la entrega del trabajo practico.
